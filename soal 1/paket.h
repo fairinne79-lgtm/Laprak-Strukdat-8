@@ -1,0 +1,35 @@
+#ifndef PAKET_H
+#define PAKET_H
+
+#include <string>
+
+struct Paket {
+    std::string kode;
+    int berat;
+};
+
+struct Node {
+    Paket info;
+    Node* next;
+};
+
+struct Queue {
+    Node* head;
+    Node* tail;
+};
+
+void createQueue(Queue& q);
+bool isEmptyQueue(const Queue& q);
+Node* alokasi(const std::string& kode, int berat);   // nullptr jika gagal
+void dealokasi(Node*& p);                            // delete + p = nullptr
+void enqueue(Queue& q, Node* p);                     // p sudah dialokasikan
+Node* dequeue(Queue& q);                             // lepas node depan, tanpa delete
+Node* findElm(const Queue& q, const std::string& kode);
+bool fFindElm(const Queue& q, const Node* p);        // keanggotaan berdasarkan ALAMAT
+int nbList(const Queue& q);
+int posisiElm(const Queue& q, const Node* p);        // mulai dari 1, 0 jika tidak ada
+int totalBerat(const Queue& q);
+void printInfo(const Queue& q);
+void delAll(Queue& q);
+
+#endif
